@@ -1,0 +1,177 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ANM_DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AspNetRoles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUserRoles">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUsers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="256" />
+    <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+    <Property Name="PasswordHash" Type="nvarchar(max)" />
+    <Property Name="SecurityStamp" Type="nvarchar(max)" />
+    <Property Name="PhoneNumber" Type="nvarchar(max)" />
+    <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="datetime" />
+    <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BlockMast">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DistrictId" Type="int" />
+    <Property Name="BlockNameEn" Type="nvarchar" MaxLength="200" />
+    <Property Name="BlockNameHn" Type="nvarchar" MaxLength="200" />
+    <Property Name="DistrictName" Type="nvarchar" MaxLength="200" />
+    <Property Name="IsActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="DistMast">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DistrictNameEn" Type="nvarchar" MaxLength="200" />
+    <Property Name="DistrictNameHn" Type="nvarchar" MaxLength="200" />
+    <Property Name="IsActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="QuestionMast">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="QuesType" Type="nvarchar" MaxLength="200" />
+    <Property Name="QuesName" Type="nvarchar" MaxLength="500" />
+    <Property Name="QuesNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="QuesText" Type="nvarchar(max)" />
+    <Property Name="QuesAnswer" Type="nvarchar" MaxLength="50" />
+    <Property Name="IsActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="tbl_ImmunizationS1">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SubDate" Type="nvarchar" MaxLength="500" />
+    <Property Name="Sub_id" Type="nvarchar" MaxLength="500" />
+    <Property Name="MobileNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="Q1_A" Type="nvarchar" MaxLength="500" />
+    <Property Name="Q2_A" Type="nvarchar" MaxLength="500" />
+    <Property Name="Q3_A" Type="nvarchar" MaxLength="500" />
+    <Property Name="Q4_A" Type="nvarchar" MaxLength="500" />
+    <Property Name="Q5_A" Type="nvarchar" MaxLength="500" />
+    <Property Name="Q6_A" Type="nvarchar" MaxLength="500" />
+    <Property Name="Q7_A" Type="nvarchar" MaxLength="500" />
+    <Property Name="Q8_A" Type="nvarchar" MaxLength="500" />
+    <Property Name="Q9_A" Type="nvarchar" MaxLength="500" />
+    <Property Name="G4_Q1" Type="nvarchar" MaxLength="500" />
+    <Property Name="G5_Q2" Type="nvarchar" MaxLength="500" />
+    <Property Name="G6_Q3" Type="nvarchar" MaxLength="500" />
+    <Property Name="G7_Q4" Type="nvarchar" MaxLength="500" />
+    <Property Name="G8_Q5" Type="nvarchar" MaxLength="500" />
+    <Property Name="G9_Q6" Type="nvarchar" MaxLength="500" />
+    <Property Name="Marks" Type="nvarchar" MaxLength="500" />
+    <Property Name="Q10_A" Type="nvarchar" MaxLength="500" />
+    <Property Name="Q11_A" Type="nvarchar" MaxLength="500" />
+    <Property Name="Q12_A" Type="nvarchar" MaxLength="500" />
+    <Property Name="_tags" Type="nvarchar" MaxLength="500" />
+    <Property Name="_uuid" Type="nvarchar" MaxLength="500" />
+    <Property Name="today" Type="nvarchar" MaxLength="500" />
+    <Property Name="G10_Q7" Type="nvarchar" MaxLength="500" />
+    <Property Name="G11_Q8" Type="nvarchar" MaxLength="500" />
+    <Property Name="G12_Q9" Type="nvarchar" MaxLength="500" />
+    <Property Name="G2_ANM" Type="nvarchar" MaxLength="500" />
+    <Property Name="_notes" Type="nvarchar" MaxLength="500" />
+    <Property Name="EndTime" Type="nvarchar" MaxLength="500" />
+    <Property Name="G13_Q10" Type="nvarchar" MaxLength="500" />
+    <Property Name="G14_Q11" Type="nvarchar" MaxLength="500" />
+    <Property Name="G15_Q12" Type="nvarchar" MaxLength="500" />
+    <Property Name="_edited" Type="nvarchar" MaxLength="500" />
+    <Property Name="_status" Type="nvarchar" MaxLength="500" />
+    <Property Name="G2_BLOCK" Type="nvarchar" MaxLength="500" />
+    <Property Name="_version" Type="nvarchar" MaxLength="500" />
+    <Property Name="_duration" Type="nvarchar" MaxLength="500" />
+    <Property Name="_xform_id" Type="nvarchar" MaxLength="500" />
+    <Property Name="timeStart" Type="nvarchar" MaxLength="500" />
+    <Property Name="G2_DISTRICT" Type="nvarchar" MaxLength="500" />
+    <Property Name="_attachments" Type="nvarchar" MaxLength="500" />
+    <Property Name="_geolocation" Type="nvarchar" MaxLength="500" />
+    <Property Name="_media_count" Type="nvarchar" MaxLength="500" />
+    <Property Name="_total_media" Type="nvarchar" MaxLength="500" />
+    <Property Name="formhub_uuid" Type="nvarchar" MaxLength="500" />
+    <Property Name="_submitted_by" Type="nvarchar" MaxLength="500" />
+    <Property Name="_date_modified" Type="nvarchar" MaxLength="500" />
+    <Property Name="meta_instanceID" Type="nvarchar" MaxLength="500" />
+    <Property Name="_submission_time" Type="nvarchar" MaxLength="500" />
+    <Property Name="_xform_id_string" Type="nvarchar" MaxLength="500" />
+    <Property Name="_bamboo_dataset_id" Type="nvarchar" MaxLength="500" />
+    <Property Name="_media_all_received" Type="nvarchar" MaxLength="500" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="200" />
+    <Property Name="CreatedDt" Type="datetime" />
+    <Property Name="UpdatedBy" Type="nvarchar" MaxLength="200" />
+    <Property Name="UpdatedDt" Type="datetime" />
+  </EntityType>
+  <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+    <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetRoles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserRoles">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserRoles">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ANM_DBModelStoreContainer">
+    <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BlockMast" EntityType="Self.BlockMast" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DistMast" EntityType="Self.DistMast" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="QuestionMast" EntityType="Self.QuestionMast" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_ImmunizationS1" EntityType="Self.tbl_ImmunizationS1" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+      <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ANM_DBModelStoreContainer" CdmEntityContainer="ANMEntities">
+    <EntitySetMapping Name="AspNetRoles">
+      <EntityTypeMapping TypeName="ANM_DBModel.AspNetRole">
+        <MappingFragment StoreEntitySet="AspNetRoles">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUsers">
+      <EntityTypeMapping TypeName="ANM_DBModel.AspNetUser">
+        <MappingFragment StoreEntitySet="AspNetUsers">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+          <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+          <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+          <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+          <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BlockMasts">
+      <EntityTypeMapping TypeName="ANM_DBModel.BlockMast">
+        <MappingFragment StoreEntitySet="BlockMast">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DistrictId" ColumnName="DistrictId" />
+          <ScalarProperty Name="BlockNameEn" ColumnName="BlockNameEn" />
+          <ScalarProperty Name="BlockNameHn" ColumnName="BlockNameHn" />
+          <ScalarProperty Name="DistrictName" ColumnName="DistrictName" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DistMasts">
+      <EntityTypeMapping TypeName="ANM_DBModel.DistMast">
+        <MappingFragment StoreEntitySet="DistMast">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DistrictNameEn" ColumnName="DistrictNameEn" />
+          <ScalarProperty Name="DistrictNameHn" ColumnName="DistrictNameHn" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="QuestionMasts">
+      <EntityTypeMapping TypeName="ANM_DBModel.QuestionMast">
+        <MappingFragment StoreEntitySet="QuestionMast">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="QuesType" ColumnName="QuesType" />
+          <ScalarProperty Name="QuesName" ColumnName="QuesName" />
+          <ScalarProperty Name="QuesNo" ColumnName="QuesNo" />
+          <ScalarProperty Name="QuesText" ColumnName="QuesText" />
+          <ScalarProperty Name="QuesAnswer" ColumnName="QuesAnswer" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="AspNetUserRoles" TypeName="ANM_DBModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+      <EndProperty Name="AspNetRoles">
+        <ScalarProperty Name="Id" ColumnName="RoleId" />
+      </EndProperty>
+      <EndProperty Name="AspNetUsers">
+        <ScalarProperty Name="Id" ColumnName="UserId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <EntitySetMapping Name="tbl_ImmunizationS1">
+      <EntityTypeMapping TypeName="ANM_DBModel.tbl_ImmunizationS1">
+        <MappingFragment StoreEntitySet="tbl_ImmunizationS1">
+          <ScalarProperty Name="UpdatedDt" ColumnName="UpdatedDt" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="CreatedDt" ColumnName="CreatedDt" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="C_media_all_received" ColumnName="_media_all_received" />
+          <ScalarProperty Name="C_bamboo_dataset_id" ColumnName="_bamboo_dataset_id" />
+          <ScalarProperty Name="C_xform_id_string" ColumnName="_xform_id_string" />
+          <ScalarProperty Name="C_submission_time" ColumnName="_submission_time" />
+          <ScalarProperty Name="meta_instanceID" ColumnName="meta_instanceID" />
+          <ScalarProperty Name="C_date_modified" ColumnName="_date_modified" />
+          <ScalarProperty Name="C_submitted_by" ColumnName="_submitted_by" />
+          <ScalarProperty Name="formhub_uuid" ColumnName="formhub_uuid" />
+          <ScalarProperty Name="C_total_media" ColumnName="_total_media" />
+          <ScalarProperty Name="C_media_count" ColumnName="_media_count" />
+          <ScalarProperty Name="C_geolocation" ColumnName="_geolocation" />
+          <ScalarProperty Name="C_attachments" ColumnName="_attachments" />
+          <ScalarProperty Name="G2_DISTRICT" ColumnName="G2_DISTRICT" />
+          <ScalarProperty Name="timeStart" ColumnName="timeStart" />
+          <ScalarProperty Name="C_xform_id" ColumnName="_xform_id" />
+          <ScalarProperty Name="C_duration" ColumnName="_duration" />
+          <ScalarProperty Name="C_version" ColumnName="_version" />
+          <ScalarProperty Name="G2_BLOCK" ColumnName="G2_BLOCK" />
+          <ScalarProperty Name="C_status" ColumnName="_status" />
+          <ScalarProperty Name="C_edited" ColumnName="_edited" />
+          <ScalarProperty Name="G15_Q12" ColumnName="G15_Q12" />
+          <ScalarProperty Name="G14_Q11" ColumnName="G14_Q11" />
+          <ScalarProperty Name="G13_Q10" ColumnName="G13_Q10" />
+          <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+          <ScalarProperty Name="C_notes" ColumnName="_notes" />
+          <ScalarProperty Name="G2_ANM" ColumnName="G2_ANM" />
+          <ScalarProperty Name="G12_Q9" ColumnName="G12_Q9" />
+          <ScalarProperty Name="G11_Q8" ColumnName="G11_Q8" />
+          <ScalarProperty Name="G10_Q7" ColumnName="G10_Q7" />
+          <ScalarProperty Name="today" ColumnName="today" />
+          <ScalarProperty Name="C_uuid" ColumnName="_uuid" />
+          <ScalarProperty Name="C_tags" ColumnName="_tags" />
+          <ScalarProperty Name="Q12_A" ColumnName="Q12_A" />
+          <ScalarProperty Name="Q11_A" ColumnName="Q11_A" />
+          <ScalarProperty Name="Q10_A" ColumnName="Q10_A" />
+          <ScalarProperty Name="Marks" ColumnName="Marks" />
+          <ScalarProperty Name="G9_Q6" ColumnName="G9_Q6" />
+          <ScalarProperty Name="G8_Q5" ColumnName="G8_Q5" />
+          <ScalarProperty Name="G7_Q4" ColumnName="G7_Q4" />
+          <ScalarProperty Name="G6_Q3" ColumnName="G6_Q3" />
+          <ScalarProperty Name="G5_Q2" ColumnName="G5_Q2" />
+          <ScalarProperty Name="G4_Q1" ColumnName="G4_Q1" />
+          <ScalarProperty Name="Q9_A" ColumnName="Q9_A" />
+          <ScalarProperty Name="Q8_A" ColumnName="Q8_A" />
+          <ScalarProperty Name="Q7_A" ColumnName="Q7_A" />
+          <ScalarProperty Name="Q6_A" ColumnName="Q6_A" />
+          <ScalarProperty Name="Q5_A" ColumnName="Q5_A" />
+          <ScalarProperty Name="Q4_A" ColumnName="Q4_A" />
+          <ScalarProperty Name="Q3_A" ColumnName="Q3_A" />
+          <ScalarProperty Name="Q2_A" ColumnName="Q2_A" />
+          <ScalarProperty Name="Q1_A" ColumnName="Q1_A" />
+          <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+          <ScalarProperty Name="Sub_id" ColumnName="Sub_id" />
+          <ScalarProperty Name="SubDate" ColumnName="SubDate" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
