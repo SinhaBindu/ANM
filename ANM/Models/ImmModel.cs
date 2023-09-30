@@ -14,7 +14,7 @@ namespace ANM.Models
         public string SubDate { get; set; }
         [JsonProperty("_id")]
         public string Sub_id { get; set; }
-        //[JsonProperty("")]
+        [JsonProperty("G2/MOBILE")]
         public string MobileNo { get; set; }
         [JsonProperty("Q1_A")]
         public string Q1_A { get; set; }

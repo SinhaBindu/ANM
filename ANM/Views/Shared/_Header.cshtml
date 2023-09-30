@@ -4,6 +4,7 @@
         <a href="#" class="b-brand">
 
             <img src="~/Content/assets/images/bhr_logo.png" alt class="logo" style="height:70px !important;">
+            DIGISHALA <br /> (ANM)
             @*<img src="~/Content/assets/images/logo-icon.png" alt class="logo-thumb">*@
         </a>
         <a href="#" class="mob-toggler">
@@ -33,13 +34,20 @@
                                 <span>John Doe</span>
                             </div>*@
                         <ul class="pro-body">
-                            <li class="bg-transparent mb-2 ms-3"></li>
-                            @*<li><a href="user-profile.html" class="dropdown-item"><i class="feather icon-user"></i> Profile</a></li>*@
-                            @if (Request.IsAuthenticated) { using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" })) { 
-                                    @Html.AntiForgeryToken() 
+                            @if (Request.IsAuthenticated)
+                            {
+                                <li class="bg-transparent mb-2 ms-3"><strong class="text-c-yellow">@User.Identity.Name</strong></li>
+                                using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                                {
+                                    @Html.AntiForgeryToken()
                                     <li><a href="javascript:document.getElementById('logoutForm').submit()" class="dropdown-item"><i class="feather icon-lock"></i> Logout</a></li>
-                                 }
-                             }
+                                }
+                            }
+                            @*<li><a href="user-profile.html" class="dropdown-item"><i class="feather icon-user"></i> Profile</a></li>*@
+
+                            @*<li class="bg-transparent mb-2 ms-3"><a target="_blank" href="https://codedthemes.com/item/gradient-able-admin-template/"><span class="badge bg-primary">Upgrade to Pro</span></a></li>
+                                <li><a href="user-profile.html" class="dropdown-item"><i class="feather icon-user"></i> Profile</a></li>
+                                <li><a href="auth-signin.html" class="dropdown-item"><i class="feather icon-lock"></i> Logout</a></li>*@
 
                         </ul>
                     </div>

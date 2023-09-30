@@ -79,7 +79,14 @@ namespace ANM.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    if (User.IsInRole("User"))
+                    {
+                        return RedirectToAction("Index", "Cert");
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:

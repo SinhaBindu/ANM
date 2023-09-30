@@ -225,6 +225,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="border2.png" />
     <Content Include="Content\assets\css\plugins\animate.min.css" />
     <Content Include="Content\assets\css\style.css" />
     <Content Include="Content\assets\fonts\fa-brands-400.svg" />
@@ -233,6 +234,8 @@
     <Content Include="Content\assets\fonts\feather6cfa.svg" />
     <Content Include="Content\assets\fonts\pct.svg" />
     <Content Include="Content\assets\fonts\poppins\pxiEyp8kv8JHgFVrJJbecmNE.html" />
+    <Content Include="Content\assets\images\border1.jpg" />
+    <Content Include="Content\assets\images\border2.png" />
     <Content Include="Content\assets\images\favicon.ico" />
     <Content Include="Content\assets\images\gallery-grid\img-grd-gal-1.jpg" />
     <Content Include="Content\assets\images\gallery-grid\img-grd-gal-2.jpg" />
@@ -352,9 +355,9 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Cert\MSG.cshtml" />
+    <Content Include="Views\Home\SummaryData.cshtml" />
+    <Content Include="Views\Home\IndexOLD.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
@@ -380,6 +383,9 @@
     <Content Include="Views\Shared\_Header.cshtml" />
     <Content Include="Views\Account\Login - Copy.cshtml" />
     <Content Include="Views\Cert\Index.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\_DistrictHeatMap.cshtml" />
+    <Content Include="Views\Cert\Cretold - Copy.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

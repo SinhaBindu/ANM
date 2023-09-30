@@ -38,8 +38,14 @@ namespace ANM.Controllers
                     }
 
                 }
+                else {
+                    return RedirectToAction("MSG", "Cert");
+                }
             }
             return RedirectToAction("Login", "Account");
+        }
+        public ActionResult MSG() { 
+            return View();
         }
         //public ActionResult CertGen(string Id)
         //{

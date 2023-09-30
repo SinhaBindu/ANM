@@ -10,9 +10,11 @@ using System.Web;
 using System.Web.Mvc;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity.Owin;
+using System.Data;
 
 namespace ANM.Controllers
 {
+    [Authorize(Roles = "Admin,State")]
     public class HomeController : Controller
     {
         ANMEntities db = new ANMEntities();
@@ -31,8 +33,41 @@ namespace ANM.Controllers
         }
         public ActionResult Index()
         {
-            return View();
+            DataTable dt = new DataTable();
+            DataSet ds = new DataSet();
+            ds = CommonModel.GetSummaryData();
+            if (ds.Tables.Count > 0)
+            {
+                dt = ds.Tables[0];
+            }
+            return View(dt);
         }
+        [HttpPost]
+        public ActionResult Get_DashBoard()
+        {
+            try
+            {
+                bool IsCheck = false;
+                DataSet ds = new DataSet();
+
+                ds = CommonModel.GetSummaryData();
+                if (ds.Tables.Count > 0)
+                {
+                    IsCheck = true;
+                }
+                // var html = ConvertViewToString("_TreatmentComList", ds);
+                var resds = JsonConvert.SerializeObject(ds);
+                var res = Json(new { IsSuccess = IsCheck, Data = resds }, JsonRequestBehavior.AllowGet);
+                res.MaxJsonLength = int.MaxValue;
+                return res;//To DO
+            }
+            catch (Exception ex)
+            {
+                string er = ex.Message;
+                return Json(new { IsSuccess = false, Data = "" }, JsonRequestBehavior.AllowGet); throw;
+            }
+        }
+
 
         public ActionResult About()
         {
@@ -44,7 +79,7 @@ namespace ANM.Controllers
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
-            // //////https://api.ona.io/jtspteam/formList?formID=Session_1_Immunization_schedule__Checklist
+
 
             return View();
         }
@@ -52,13 +87,15 @@ namespace ANM.Controllers
         [HttpGet]
         public JsonResult APICall()
         {
+            // //////https://api.ona.io/jtspteam/formList?formID=Session_1_Immunization_schedule__Checklist
             string str = string.Empty;
             ANMEntities db_ = new ANMEntities();
             try
             {
                 string maxdate = APIService.GetMAXDate("1");
                 WebRequest req;
-                if (string.IsNullOrWhiteSpace(maxdate)) {
+                if (string.IsNullOrWhiteSpace(maxdate))
+                {
                     req = WebRequest.Create(@"https://api.ona.io/api/v1/data/758721.json");
                 }
                 else
@@ -66,7 +103,7 @@ namespace ANM.Controllers
                     string datem = Convert.ToDateTime(maxdate.ToString()).ToString("yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
                     req = WebRequest.Create(@"https://api.ona.io/api/v1/data/758721.json?query={%22_submission_time%22:{%22$gte%22:%22" + datem + "%22}}");
                 }
-               
+
                 // long timestamp = ConvertToTimestamp(Convert.ToDateTime(maxdate));
 
                 req.Method = "GET";
@@ -108,7 +145,7 @@ namespace ANM.Controllers
                             tbl.Q10_A = m.Q10_A;
                             tbl.Q11_A = m.Q11_A;
                             tbl.Q12_A = m.Q12_A;
-                           //tbl.C_tags = m.C_tags;
+                            //tbl.C_tags = m.C_tags;
                             tbl.C_uuid = m.C_uuid;
                             tbl.today = m.today;
                             tbl.G10_Q7 = m.G10_Q7;
@@ -146,24 +183,28 @@ namespace ANM.Controllers
                             var res = db.SaveChanges();
                             if (res > 0)
                             {
-                                var user = new ApplicationUser { UserName = "9999999999"+res, Email = "9999999999" + res + "@gmail.com", PhoneNumber = "9999999999" + res };
-                                var result = UserManager.CreateAsync(user, "9999999999").Result;
+                                var user = new ApplicationUser { UserName = m.MobileNo, Email = m.MobileNo + "@gmail.com", PhoneNumber = m.MobileNo };
+                                var result = UserManager.CreateAsync(user, m.MobileNo).Result;
                                 if (result.Succeeded)
                                 {
                                     var result1 = UserManager.AddToRole(user.Id, "User");
                                     str += res + "Success";
                                 }
-                                
+
                             }
                         }
                     }
                     return Json(str, JsonRequestBehavior.AllowGet);
                 }
             }
-           catch (Exception ex)
+            catch (Exception ex)
             {
             }
             return Json(str, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult SummaryData()
+        {
+            return View();
         }
     }
 }

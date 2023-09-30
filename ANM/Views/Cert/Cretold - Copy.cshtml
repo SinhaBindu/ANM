@@ -1,0 +1,99 @@
+﻿@model ANM.Models.CTFModel
+@{
+    ViewBag.Title = "प्रमाणपत्र";
+}
+@if (Model.Result)
+{
+
+    <div class="pcoded-content">
+        <div class="mb-2 text-center">  <input type="button" class="btn btn-primary" id="btn" value="Print" onclick="printDiv();"></div>
+        <div class="row">
+            <div class="col-md-12 offset-md-2">
+                <div style="width:100%; " >
+                    <div id="divbgimg" style="width: 60%; height: 400px; " class="bcg">
+                        <style id="printStyles">
+                            .bcg {
+                                background: url('https://localhost:44334/border2.png')no-repeat !important;
+                            }
+
+                            @@media print {
+                                * {
+                                    -webkit-print-color-adjust: exact !important; /*Chrome, Safari */
+                                    color-adjust: exact !important; /*Firefox*/
+                                }
+                            }
+                        </style>
+                        <div>
+                            @*style="border: 2px solid #000000; background: #ffffff; "*@
+                            <div style="display: flex;">
+                                <div style="width: 34%; float: left; padding-left: 6%; padding-top: 6%;"><img src="~/Content/assets/images/bhr_logo.png" alt="" style=" height: 100px;" /></div>
+                                <div style="width: 38%; text-align: center; padding: 10% 5% 0 0%; font-size: 25px; font-weight: bold;"><strong>प्रमाणपत्र</strong> </div>
+                                <div style="width: 17%; float: right; padding-top: 6%;"><img src="~/Content/assets/images/NHM_logo.png" alt="" style=" height: 100px;" /></div>
+                            </div>
+                            <div style="width: 100%; text-align: center; padding-bottom: 3%; font-size: 18px; font-weight: bold;">बधाई हो !</div>
+                            <div style="width: 100%; text-align: center; font-size: 22px; font-weight: bold; color: #A67B26; ">पने सत्र 1 टीकाकरण सारणी को<br /> सफलतापूर्वक पूरा कर लिया है |</div>
+                            <div style="min-width: 61% !important; display: flex;">
+                                <div style="width: 15%; padding: 0 0 4% 8%; display: flex;"><img src="~/Content/assets/images/ChildPicNew.png" alt="Alternate Text" style=" height: 80px;" /></div>
+                                <div style="width: 30%; padding: 4% 0 0 38%; text-align: left; font-size: 22px; font-weight: bold; display: flex;">@Model.Name</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="col-md-12 offset-md-2">
+                <div style="width:100%; display:none;" id="DivIdToPrint">
+                    <div id="divbgimg" style="width: 80%; height: 400px; " class="bcg">
+                        <style id="printStyles">
+                            .bcg {
+                                background: url('https://localhost:44334/border2.png')no-repeat !important;
+                            }
+                            @@media print {
+                                * {
+                                    -webkit-print-color-adjust: exact !important; /*Chrome, Safari */
+                                    color-adjust: exact !important; /*Firefox*/
+                                }
+                            }
+                        </style>
+                        <div>
+                            @*style="border: 2px solid #000000; background: #ffffff; "*@
+                            <div style="display: flex;">
+                                <div style="float: left; padding-left: 6%; padding-top: 6%;"><img src="~/Content/assets/images/bhr_logo.png" alt="" style=" height: 100px;" /></div>
+                                <div style="width: 38%; text-align: center; padding: 10% 5% 0 0%; font-size: 25px; font-weight: bold;"><strong>प्रमाणपत्र</strong> </div>
+                                <div style="width: 17%; float: right; padding-top: 6%;"><img src="~/Content/assets/images/NHM_logo.png" alt="" style=" height: 100px;" /></div>
+                            </div>
+                            <div style="width: 100%; text-align: center; padding-bottom: 3%; font-size: 18px; font-weight: bold;">बधाई हो !</div>
+                            <div style="width: 100%; text-align: center; font-size: 22px; font-weight: bold; color: #A67B26; ">पने सत्र 1 टीकाकरण सारणी को<br /> सफलतापूर्वक पूरा कर लिया है |</div>
+                            <div style="min-width: 61% !important; display: flex;">
+                                <div style="width: 15%; padding: 0 0 4% 8%; display: flex;"><img src="~/Content/assets/images/ChildPicNew.png" alt="Alternate Text" style=" height: 80px;" /></div>
+                                <div style="width: 30%; padding: 4% 0 0 25%; text-align: left; font-size: 22px; font-weight: bold; display: flex;">@Model.Name</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <h4 class="text-capitalize text-center text-danger">प्रमाणपत्र नहीं है |</h4>
+}
+
+<script>
+    //$(document).ready(function () {
+    //    printDiv();
+    //});
+
+    function printDiv() {
+        var divToPrint = document.getElementById('DivIdToPrint');
+        var newWin = window.open('', 'Print-Window');
+        var printStyles = document.getElementById("printStyles").outerHTML;
+        newWin.document.open();
+        newWin.document.write('<html><body onload="window.print()">' + divToPrint.innerHTML + printStyles + '</body></html>');
+        newWin.document.close();
+        setTimeout(function () { newWin.close(); }, 10);
+    }
+</script>

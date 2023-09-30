@@ -13,14 +13,14 @@
     <link rel="icon" href="~/Content/assets/images/favicon.ico" type="image/x-icon">
 
     <link rel="stylesheet" href="~/Content/assets/css/style.css">
-
+    <base href="@ANM.Models.CommonModel.GetBaseUrl()" />
 </head>
 <body>
     <div class="loader-bg">
-        <div class="loader-track">
-            <div class="loader-fill"></div>
+            <div class="loader-track">
+                <div class="loader-fill"></div>
+            </div>
         </div>
-    </div>
 
     @Html.Partial("_Navbar")
     @Html.Partial("_Header")
@@ -41,10 +41,14 @@
     <script src="~/Content/assets/js/plugins/perfect-scrollbar.min.js" type="45ed71f3f759f6ec4fcaa4e4-text/javascript"></script>
     <script src="~/Content/assets/js/plugins/bootstrap.min.js" type="45ed71f3f759f6ec4fcaa4e4-text/javascript"></script>
     <script src="~/Content/assets/js/pcoded.js" type="45ed71f3f759f6ec4fcaa4e4-text/javascript"></script>
-
-    <script src="~/Content/assets/js/plugins/apexcharts.min.js" type="45ed71f3f759f6ec4fcaa4e4-text/javascript"></script>
     <script src="~/Content/assets/js/pages/dashboard-main.js" type="45ed71f3f759f6ec4fcaa4e4-text/javascript"></script>
+
+    @*<script src="~/Content/assets/js/plugins/apexcharts.min.js" type="45ed71f3f759f6ec4fcaa4e4-text/javascript"></script>*@
+
     <script src="~/Content/assets/js/rocket-loader.min.js" data-cf-settings="45ed71f3f759f6ec4fcaa4e4-|49" defer></script>
+    @*
+
+    *@
 
 </body>
 </html>

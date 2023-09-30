@@ -2,17 +2,23 @@
     <div class="navbar-wrapper  ">
         <div class="navbar-content scroll-div ">
             <ul class="nav pcoded-inner-navbar ">
-                <li class="nav-item pcoded-menu-caption">
+                @*<li class="nav-item pcoded-menu-caption">
                     <label>
 
                     </label>
-                </li>
+                </li>*@
                 @if (User.Identity.IsAuthenticated)
                 {
                     if (User.IsInRole("User"))
                     {
                         <li class="nav-item">
                             <a href="~/Cert/Index" class="nav-link "><span class="pcoded-micon"><i class="feather icon-printer"></i></span><span class="pcoded-mtext">प्रमाणपत्र</span></a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a href="~/Home/Index" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Dashboard</span></a>
                         </li>
                     }
                 }
@@ -76,13 +82,13 @@
         <li class="nav-item"><a href="sample-page.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-sidebar"></i></span><span class="pcoded-mtext">Sample page</span></a></li>*@
             </ul>
             @*<div class="card text-center">
-                <div class="card-body px-3">
-                    <i class="feather icon-sunset f-40"></i>
-                    <h6 class="mt-3">Upgrade to Pro</h6>
-                    <p>To get more features and components</p>
-                    <a href="https://codedthemes.com/item/gradient-able-admin-template/" target="_blank" class="btn btn-primary btn-sm text-white m-0">Buy now</a>
-                </div>
-            </div>*@
+                    <div class="card-body px-3">
+                        <i class="feather icon-sunset f-40"></i>
+                        <h6 class="mt-3">Upgrade to Pro</h6>
+                        <p>To get more features and components</p>
+                        <a href="https://codedthemes.com/item/gradient-able-admin-template/" target="_blank" class="btn btn-primary btn-sm text-white m-0">Buy now</a>
+                    </div>
+                </div>*@
         </div>
     </div>
 </nav>

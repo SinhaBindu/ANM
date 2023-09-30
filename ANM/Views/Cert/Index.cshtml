@@ -7,25 +7,48 @@
 
     <div class="pcoded-content">
         <div class="mb-2 text-center">  <input type="button" class="btn btn-primary" id="btn" value="Print" onclick="printDiv();"></div>
-        <div class="row">
+        <div style="margin-left: 160px;"><div class="row">
+    <div class="col-md-12">
+        <div style="max-width:90%;" id="DivIdToPrint">
+            <div id="divbgimg" style="width: 100%; height: 390px; " class="bcg">
+                <style id="printStyles">
+                    .bcg {
+                        width: 80% !important;
+                        background: url('https://localhost:44334/border3.png')no-repeat !important;
+                    }
 
-            <div style="width:100%;" id="DivIdToPrint">
-                <div style="border:2px solid #000000;background:#ffffff;">
-                    <div style="min-width: 100% !important; display: flex;">
-                        <div style="width:40%; float:left; padding-left:2%;"><img src="~/Content/assets/images/bhr_logo.png" alt="" style=" height: 130px;" /></div>
-                        <div style="width:30%; text-align:left; padding:5% 0 0 0%;font-size:25px;font-weight:bold;"><strong>प्रमाणपत्र</strong> </div>
-                        <div style="width: 20%; float: right;"><img src="~/Content/assets/images/NHM_logo.png" alt="" style=" height: 130px;" /></div>
-                    </div>
-                    <div style="width: 100%; text-align: center; padding-bottom: 3%; font-size: 18px; font-weight: bold;">बधाई हो !</div>
-                    <div style="width: 100%; text-align: center; font-size: 22px; font-weight: bold; color: #A67B26; ">पने सत्र 1 टीकाकरण सारणी को<br /> सफलतापूर्वक पूरा कर लिया है |</div>
-                    <div style="min-width: 100% !important; display: flex;">
-                        <div style="width:15%; padding:0 0 4% 8%; "><img src="~/Content/assets/images/ChildPicNew.png" alt="Alternate Text" style=" height: 80px;" /></div>
-                        <div style="width: 85%; padding: 4% 0 0 18%; text-align: left; font-size: 22px; font-weight: bold;">@Model.Name</div>
-                    </div>
+                    @@media print {
+                        * {
+                            -webkit-print-color-adjust: exact !important; /*Chrome, Safari */
+                            color-adjust: exact !important; /*Firefox*/
+                        }
+
+                        @@media screen and (min-width: 20em) {
+                            br {
+                                /* hide the BR tag for wider screens (i.e. no line break) */
+                                display: none;
+                            }
+                        }
+                    }
+                </style>
+                <div style="padding-left: 60px; padding-top: 60px;">
+                    <div><img src="~/Content/assets/images/PrintHeader.png" alt="Alternate Text" style="width: 445px" /></div>
+                </div>
+                <div style="padding-left: 71px; padding-top: 30px; font-size: 16px; font-weight: 900; font-family: fantasy; ">
+
+                    <span>यह प्रमाणित किया जाता है&nbsp; <strong style="font-size: 22px; font-weight: 900; color:#ef7015; font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">@Model.Name</strong></span>
+                    <br /><span>ने टीकाकरण सारणी सत्र को सफतापूर्वक पूरा कर लिया है |</span>
+                    <br /><span> राज्य स्वास्थ्य समिति,बिहार आपके उज्वल भविष्य की </span>
+                    <br /><span style="padding-left: 144px; text-align:center;">कामना करती है |</span>
+
+                </div>
+                <div style="padding-left: 91px; padding-top:8px;">
+                    <div><img src="~/Content/assets/images/PrintChild.png" alt="Alternate Text" style="width: 200px" /></div>
                 </div>
             </div>
-
         </div>
+    </div>
+</div></div>
     </div>
 }
 else
@@ -41,8 +64,9 @@ else
     function printDiv() {
         var divToPrint = document.getElementById('DivIdToPrint');
         var newWin = window.open('', 'Print-Window');
+        var printStyles = document.getElementById("printStyles").outerHTML;
         newWin.document.open();
-        newWin.document.write('<html><body onload="window.print()">' + divToPrint.innerHTML + '</body></html>');
+        newWin.document.write('<html><body onload="window.print()">' + divToPrint.innerHTML + printStyles + '</body></html>');
         newWin.document.close();
         setTimeout(function () { newWin.close(); }, 10);
     }
