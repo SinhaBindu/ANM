@@ -6,9 +6,12 @@
     if (Model != null)
     {
         dt = Model;
-        Ts = Convert.ToInt32(dt.Compute("Sum(TotalMark)", string.Empty));
-        TP = Convert.ToInt32(dt.Compute("Sum(Pass)", string.Empty));
-        TF = Convert.ToInt32(dt.Compute("Sum(Fail)", string.Empty));
+        if (dt.Rows.Count > 0)
+        {
+            Ts = Convert.ToInt32(dt.Compute("Sum(TotalMark)", string.Empty));
+            TP = Convert.ToInt32(dt.Compute("Sum(Pass)", string.Empty));
+            TF = Convert.ToInt32(dt.Compute("Sum(Fail)", string.Empty));
+        }
     }
 }
 <style>
@@ -31,133 +34,114 @@
 
 <div class="app-content">
     <div class="side-app">
-        <div>
-            <!-- PAGE-HEADER -->
-            @*<div class="page-header">
-        <ol class="breadcrumb">*@
-            <!-- breadcrumb -->
-            @*<li class="breadcrumb-item"><a href="#"><h3 class="mb-0 breadcrump-tittle">Welcome To BHY</h3></a></li>*@
-            @*</ol><!-- End breadcrumb -->
-        <div class="ml-auto">
-                <div class="input-group">
-                    <a href="#" class="btn btn-white button-icon mr-3 mt-1 mb-1">
-                        <span><i class="fe fe-shopping-cart"></i>Buy Now</span>
-                    </a>
-                    <a href="#" class="btn btn-white button-icon mr-3 mt-1 mb-1">
-                        <span><i class="fe fe-printer"></i>Print</span>
-                    </a>
-                    <a href="#" class="btn btn-primary button-icon mr-3 mt-1 mb-1">
-                        <span><i class="fe fe-download"></i>Download</span>
-                    </a>
-                </div>
-            </div>*@
-            @*</div>*@
-            <!-- PAGE-HEADER END -->
 
-            <div class="row pt-2">
-                <div class="col-sm-12 col-xl-4 col-lg-6">
-                    <div class="card overflow-hidden">
-                        <div class="card-body pb-0">
-                            <div class="row">
-                                <div class="col-md-8">
-                                    <a href="#" target="_blank">
-                                        <div class="d-flex">
-                                            <div class="order-icon mb-0 border-primary">
-                                                <i class="fa fa-users text-primary"></i>
-                                            </div>
-                                            <div class="ml-3 mt-1">
-                                                <h5 class="mb-1 widget-tittle">Total</h5>
-                                                <span class=""><i class="fa fa-caret-up "></i><strong class="">@Ts</strong></span>
-                                                @*<span class="text-muted ml-0 spanSm text-success">Last Treatment</span>*@
-                                            </div>
+        <div class="row pt-2">
+
+            <div class="col-sm-12 col-xl-2 col-lg-6">
+                <div class="card overflow-hidden">
+                    <div class="card-body pb-0">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <a href="#" target="_blank">
+                                    <div class="d-flex">
+                                        <div class="order-icon mb-0 border-primary">
+                                            <i class="fa fa-users text-primary"></i>
                                         </div>
-                                    </a>
-                                </div>
-                                <div class="col-md-4">
-                                    <h2 class="mt-2 number-font mb-0 float-md-right" id="h2totalreg"></h2>
-                                </div>
+                                        <div class="ml-3 mt-1">
+                                            <h5 class="mb-1 widget-tittle">Total &nbsp; <strong class="">@Ts</strong></h5>
+                                            <span class=""><i class="fa fa-caret-up "></i></span>
+                                            @*<span class="text-muted ml-0 spanSm text-success">Last Treatment</span>*@
+                                        </div>
+                                    </div>
+                                </a>
                             </div>
-                        </div>
-                        <div>
-                            @*<div class="flot-chart-absolute h-99 chart-dropshadow-primary" id="flotChart2" style="padding: 0px; position: relative;">
-                            <canvas class="flot-base" width="343" height="99" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 343.531px; height: 99px;"></canvas><canvas class="flot-overlay" width="343" height="99" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 343.531px; height: 99px;"></canvas>
-                        </div>*@
+                            <div class="col-md-4">
+                                <h2 class="mt-2 number-font mb-0 float-md-right" id="h2totalreg"></h2>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-sm-12 col-xl-4 col-lg-6">
-                    <div class="card overflow-hidden">
-                        <div class="card-body pb-0">
-                            <div class="row">
-                                <div class="col-md-8">
-                                    <a href="#" target="_blank">
-                                        <div class="d-flex">
-                                            <div class="order-icon mb-0 border-success">
-                                                <i class="fa fa-users text-success"></i>
-                                            </div>
-                                            <div class="ml-3 mt-1">
-                                                <h5 class="mb-1 widget-tittle">Pass</h5>
-                                                <span class=""><i class="fa fa-caret-up"></i><strong class="fw-bold">@TP</strong></span>
-                                                @*<span class="text-muted ml-0 spanSm">Treatment given</span>*@
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="col-md-4">
-                                    <h2 class="mt-2 number-font mb-0 float-md-right" id="h2totalctreat"></h2>
-                                </div>
-                            </div>
-                        </div>
-                        @*<div>
-                        <div class="flot-chart-absolute h-99 chart-dropshadow-success" id="flotChart3" style="padding: 0px; position: relative;"><canvas class="flot-base" width="343" height="99" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 343.531px; height: 99px;"></canvas><canvas class="flot-overlay" width="343" height="99" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 343.531px; height: 99px;"></canvas></div>
-                    </div>*@
-                    </div>
-                </div>
-                <div class="col-sm-12 col-xl-4 col-lg-6">
-                    <div class="card overflow-hidden">
-                        <div class="card-body pb-0">
-                            <div class="row">
-                                <div class="col-md-8">
-                                    <a href="#" target="_blank">
-                                        <div class="d-flex">
-                                            <div class="order-icon mb-0 border-success">
-                                                <i class="fa fa-users text-azure"></i>
-                                            </div>
-                                            <div class="ml-3 mt-1">
-                                                <h5 class="mb-1 widget-tittle">Fail</h5>
-                                                <span class=""><i class="fa fa-caret-up"></i><strong class="fw-bold">@TF</strong></span>
-                                                @*<span class="text-muted ml-0 spanSm">Treatment given</span>*@
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="col-md-4">
-                                    <h2 class="mt-2 number-font mb-0 float-md-right" id="h2selecttreat"></h2>
-                                </div>
-                            </div>
-                        </div>
-                        @*<div>
-                        <div class="flot-chart-absolute h-99 chart-dropshadow-success" id="flotChart3" style="padding: 0px; position: relative;"><canvas class="flot-base" width="343" height="99" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 343.531px; height: 99px;"></canvas><canvas class="flot-overlay" width="343" height="99" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 343.531px; height: 99px;"></canvas></div>
+                    <div>
+                        @*<div class="flot-chart-absolute h-99 chart-dropshadow-primary" id="flotChart2" style="padding: 0px; position: relative;">
+                        <canvas class="flot-base" width="343" height="99" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 343.531px; height: 99px;"></canvas><canvas class="flot-overlay" width="343" height="99" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 343.531px; height: 99px;"></canvas>
                     </div>*@
                     </div>
                 </div>
             </div>
+            <div class="col-sm-12 col-xl-2 col-lg-6">
+                <div class="card overflow-hidden">
+                    <div class="card-body pb-0">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <a href="#" target="_blank">
+                                    <div class="d-flex">
+                                        <div class="order-icon mb-0 border-success">
+                                            <i class="fa fa-users text-success"></i>
+                                        </div>
+                                        <div class="ml-3 mt-1">
+                                            <h5 class="mb-1 widget-tittle">Pass  &nbsp; <strong class="fw-bold">@TP</strong></h5>
+                                            <span class=""><i class="fa fa-caret-up"></i></span>
+                                            @*<span class="text-muted ml-0 spanSm">Treatment given</span>*@
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-md-4">
+                                <h2 class="mt-2 number-font mb-0 float-md-right" id="h2totalctreat"></h2>
+                            </div>
+                        </div>
+                    </div>
+                    @*<div>
+                    <div class="flot-chart-absolute h-99 chart-dropshadow-success" id="flotChart3" style="padding: 0px; position: relative;"><canvas class="flot-base" width="343" height="99" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 343.531px; height: 99px;"></canvas><canvas class="flot-overlay" width="343" height="99" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 343.531px; height: 99px;"></canvas></div>
+                </div>*@
+                </div>
+            </div>
+            <div class="col-sm-12 col-xl-2 col-lg-6">
+                <div class="card overflow-hidden">
+                    <div class="card-body pb-0">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <a href="#" target="_blank">
+                                    <div class="d-flex">
+                                        <div class="order-icon mb-0 border-success">
+                                            <i class="fa fa-users text-azure"></i>
+                                        </div>
+                                        <div class="ml-3 mt-1">
+                                            <h5 class="mb-1 widget-tittle">Fail &nbsp; <strong class="fw-bold">@TF</strong></h5>
+                                            <span class=""><i class="fa fa-caret-up"></i></span>
+                                            @*<span class="text-muted ml-0 spanSm">Treatment given</span>*@
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-md-4">
+                                <h2 class="mt-2 number-font mb-0 float-md-right" id="h2selecttreat"></h2>
+                            </div>
+                        </div>
+                    </div>
+                    @*<div>
+                    <div class="flot-chart-absolute h-99 chart-dropshadow-success" id="flotChart3" style="padding: 0px; position: relative;"><canvas class="flot-base" width="343" height="99" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 343.531px; height: 99px;"></canvas><canvas class="flot-overlay" width="343" height="99" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 343.531px; height: 99px;"></canvas></div>
+                </div>*@
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-xl-6 col-lg-6">
+                <div id="subdata" style="height: 200px !important; overflow-y: scroll; overflow-x: hidden; "> </div>
+                </div>
+
+            </div>
 
             <div class="row">
-                <div class="col-md-7">
+                <div class="col-md-6">
                     @Html.Partial("_DistrictHeatMap")
                 </div>
-                <div class="col-md-5">
+                <div class="col-md-6">
                     <div id="piechartrt"></div>
                 </div>
             </div>
         </div>
-    </div>
 </div>
 
-
 @section Scripts{
-
 
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
@@ -184,6 +168,7 @@
             return arr;
         }
         $(document).ready(function () {
+            $('#subdata').html("");
             var maxPathId = "";
             var res = [];
             //showsumm();
@@ -194,6 +179,8 @@
                 success: function (resp) {
                     if (resp.IsSuccess) {
                         var resdata = JSON.parse(resp.Data);
+                        $('#subdata').html(resp.Dhtml);
+                        $('#DataList').DataTable();
                         var res = resdata.Table;
                         var max1 = [], max2 = [], max3 = [], Dis = [], Blk = [], Dis1 = [],
                             sum1 = 0, sumt2 = 0, sumseltreat = 0, sumelibletreat = 0;
@@ -219,7 +206,7 @@
                             pathdisid.attr('onclick', 'bindpiechart(this ,"' + disObj.DistrictNameEn + '");');
                             textdisid.attr('onclick', 'bindpiechart(this ,"' + disObj.DistrictNameEn + '");');
                             if (i == 0) {
-                                bindpiechart(this,  disObj.DistrictNameEn);
+                                bindpiechart(this, disObj.DistrictNameEn);
                             }
                         }
                     }
@@ -382,4 +369,6 @@
             }
         }
     </script>
+
+
 }

@@ -1,0 +1,79 @@
+﻿@using System.Data
+@{
+    ViewBag.Title = "User List";
+    DataTable dt = new DataTable();
+    if (Model != null)
+    {
+        dt = Model;
+    }
+}
+<style>
+    .table thead th {
+        background: #ff5370 !important;
+    }
+    .table tfoot td {
+        background: #ff5370 !important;
+        font-weight: 900;
+        font-size:16px;
+    }
+        .bl {
+        font-weight: 900;
+    }
+</style>
+
+<div class="row row-deck">
+    <div class="col-lg-12 col-md-12">
+
+        <div class="">
+            @*table card-table table-vcenter text-nowrap*@
+            <table class="table card-table table-vcenter text-nowrap small" id="DataList">
+                <thead>
+                    <tr>
+                        @*<th>SrNo.</th>*@
+                        <th>District</th>
+                        <th>Block</th>
+                        <th>Total <br /> Mark</th>
+                        <th>Pass</th>
+                        <th>Fail</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        int sno = 1;
+                        if (Model != null)
+                        {
+                            foreach (DataRow dr in dt.Rows)
+                            {
+                                <tr>
+                                    @*<td class="text-center">@(sno++)</td>*@
+                                    <td class="text-left bl" style="word-wrap: break-word;">@dr["DistrictNameEn"].ToString().Replace("_", " ")</td>
+                                    <td class="text-left bl" style="word-wrap: break-word;">@dr["BlockNameEn"].ToString().Replace("_"," ")</td>
+                                    <td class="text-left bl ">@dr["TotalMark"]</td>
+                                    <td class="text-left bl ">@dr["Pass"]</td>
+                                    <td class="text-left bl ">@dr["Fail"]</td>
+                                </tr>
+                            }
+
+                        }
+                        else
+                        {
+                            <tr><td colspan="7" class="text-danger"><strong> Record Not Found !!</strong></td></tr>
+                        }
+                    }
+
+                </tbody>
+                <tfoot>
+                    @if (dt.Rows.Count > 0)
+                    {
+                        <tr>
+                            <td colspan="2" style="text-align:right;"><strong>Grand Total : - </strong> </td>
+                            <td><strong> @Convert.ToInt32(dt.Compute("Sum(TotalMark)", string.Empty))</strong></td>
+                            <td><strong> @Convert.ToInt32(dt.Compute("Sum(Pass)", string.Empty))</strong></td>
+                            <td><strong> @Convert.ToInt32(dt.Compute("Sum(Fail)", string.Empty))</strong></td>
+                        </tr>
+                    }
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>

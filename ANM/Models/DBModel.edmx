@@ -110,12 +110,12 @@
           <Property Name="G15_Q12" Type="nvarchar" MaxLength="500" />
           <Property Name="_edited" Type="nvarchar" MaxLength="500" />
           <Property Name="_status" Type="nvarchar" MaxLength="500" />
+          <Property Name="G2_DISTRICT" Type="nvarchar" MaxLength="500" />
           <Property Name="G2_BLOCK" Type="nvarchar" MaxLength="500" />
           <Property Name="_version" Type="nvarchar" MaxLength="500" />
           <Property Name="_duration" Type="nvarchar" MaxLength="500" />
           <Property Name="_xform_id" Type="nvarchar" MaxLength="500" />
           <Property Name="timeStart" Type="nvarchar" MaxLength="500" />
-          <Property Name="G2_DISTRICT" Type="nvarchar" MaxLength="500" />
           <Property Name="_attachments" Type="nvarchar" MaxLength="500" />
           <Property Name="_geolocation" Type="nvarchar" MaxLength="500" />
           <Property Name="_media_count" Type="nvarchar" MaxLength="500" />
@@ -133,6 +133,15 @@
           <Property Name="CreatedDt" Type="datetime" />
           <Property Name="UpdatedBy" Type="nvarchar" MaxLength="200" />
           <Property Name="UpdatedDt" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_LoginDetail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" />
+          <Property Name="LoginDt" Type="datetime" />
+          <Property Name="IsActive" Type="bit" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
           <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
@@ -170,6 +179,7 @@
           <EntitySet Name="DistMast" EntityType="Self.DistMast" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="QuestionMast" EntityType="Self.QuestionMast" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_ImmunizationS1" EntityType="Self.tbl_ImmunizationS1" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_LoginDetail" EntityType="Self.tbl_LoginDetail" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
             <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
@@ -256,6 +266,7 @@
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
           <EntitySet Name="tbl_ImmunizationS1" EntityType="ANM_DBModel.tbl_ImmunizationS1" />
+          <EntitySet Name="tbl_LoginDetail" EntityType="ANM_DBModel.tbl_LoginDetail" />
         </EntityContainer>
         <EntityType Name="tbl_ImmunizationS1">
           <Key>
@@ -321,6 +332,15 @@
           <Property Name="CreatedDt" Type="DateTime" Precision="3" />
           <Property Name="UpdatedBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="UpdatedDt" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_LoginDetail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="UserId" Type="Guid" />
+          <Property Name="LoginDt" Type="DateTime" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -460,6 +480,16 @@
                 <ScalarProperty Name="Sub_id" ColumnName="Sub_id" />
                 <ScalarProperty Name="SubDate" ColumnName="SubDate" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_LoginDetail">
+            <EntityTypeMapping TypeName="ANM_DBModel.tbl_LoginDetail">
+              <MappingFragment StoreEntitySet="tbl_LoginDetail">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="LoginDt" ColumnName="LoginDt" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

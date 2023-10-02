@@ -50,5 +50,18 @@ namespace ANM.Models
             DataSet ds = sp.ExecuteDataSet();
             return ds;
         }
+        public static DataTable GetSPLastLogin()
+        {
+            StoredProcedure sp = new StoredProcedure("GetSPLastLogin");
+            DataTable dt = sp.ExecuteDataSet().Tables[0];
+            return dt;
+        }
+        public static DataTable GetSPCutUserlist()
+        {
+            StoredProcedure sp = new StoredProcedure("SPGetCutUserlist");
+            sp.Command.AddParameter("@User", HttpContext.Current.User.Identity.Name, DbType.String);
+            DataTable dt = sp.ExecuteDataSet().Tables[0];
+            return dt;
+        }
     }
 }

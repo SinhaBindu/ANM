@@ -1,0 +1,119 @@
+﻿@model ANM.Models.RegisterViewModel
+@{
+
+}
+<style>
+    .dataTables_wrapper {
+        padding: 5px;
+    }
+
+    .card-table thead tr th {
+        font-size: 11px !important;
+        padding: 8px 10px !important;
+    }
+
+    .card-table tbody tr td {
+        font-size: 11px !important;
+        padding: 8px 10px !important;
+    }
+</style>
+
+
+<div class="app-content">
+    <div class="side-app">
+
+        <div class="row pt-2">
+            <div class="col-sm-12 col-xl-12 col-lg-6">
+                <div class="card overflow-hidden">
+                    <div class="card-body pb-0">
+                        <div class="row">
+
+                            <div id="div-download"></div>
+                            <!-- PAGE-HEADER END -->
+                            @using (Html.BeginForm("GetUserDetailData", "Home", FormMethod.Post, new { id = "submission-form" }))
+                            {
+
+                                <div class="col-md-12">
+                                    <div style="text-align: center; font-weight: 700;">
+                                        <h4><strong>Downloaded Certificates List</strong></h4>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div id="submission-data">
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        $(document).ready(function () {
+            BindData();
+
+        });
+
+        function BindData() {
+            jQuery.event.trigger("ajaxStart");
+            $('#submission-data').removeClass("text-danger");
+            var url = $('#submission-form').attr("action");
+            var formData = $('#submission-form').serialize();
+            $.ajax({
+                url: url,
+                type: "Post",
+                data: '',//{ 'District': District, 'Block': Block },
+                success: function (resp) {
+                    if (resp.IsSuccess) {
+                        jQuery.event.trigger("ajaxStop");
+                        $('#submission-data').html(resp.Data);
+                        if ($.fn.dataTable.isDataTable('#DataList')) {
+                            $("#DataList").dataTable().fnDestroy();
+                        }
+                        table = $('#DataList').DataTable({
+                            //scrollY: "400px",
+                            //scrollX: true,
+                            //scrollCollapse: true,
+                            //paging: false,
+                            "lengthChange": false,
+                            pageLength: 100,
+                            fixedColumns: {
+                                leftColumns: 1,
+                                rightColumns: 1
+                            },
+                            buttons: [{
+                                extend: 'excel', text: '<span><i class="fa fa-download"></i>Export</span>', title: 'User Lists',//$('#IDDistrict option:selected').text() +
+                                className: 'btn btn-primary button-icon mr-3 mt-1 mb-1',
+                                filename: 'User List',
+                                exportOptions: { modifier: { page: 'all' } }
+                            }],
+                        });
+                        $('.dataTables_filter input[type="search"]').css(
+                            { 'width': '500px', 'display': 'inline-block' }
+                        );
+                        $('#div-download').empty();
+                        //table.buttons().container().appendTo($('#div-download'));
+                    }
+                    else {
+                        $('#submission-data').html("Record Not Found !!");//TO DO
+                        $('#submission-data').addClass("text-danger");//TO DO
+                    }
+                },
+                error: function (req, error) {
+                    if (error === 'error') { error = req.statusText; }
+                    var errormsg = 'There was a communication error: ' + error;
+                    $('#submission-data').html(errormsg);
+                    jQuery.event.trigger("ajaxStop");
+                    return false;
+                }
+            });
+        }
+
+    </script>
+}

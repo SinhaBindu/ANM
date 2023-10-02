@@ -47,17 +47,18 @@ namespace ANM.Controllers
         {
             try
             {
+                var html = string.Empty;
                 bool IsCheck = false;
                 DataSet ds = new DataSet();
-
+                DataTable dt = new DataTable();
                 ds = CommonModel.GetSummaryData();
                 if (ds.Tables.Count > 0)
                 {
-                    IsCheck = true;
+                    IsCheck = true; dt = ds.Tables[0];
+                    html = ConvertViewToString("_BlockWise", dt);
                 }
-                // var html = ConvertViewToString("_TreatmentComList", ds);
                 var resds = JsonConvert.SerializeObject(ds);
-                var res = Json(new { IsSuccess = IsCheck, Data = resds }, JsonRequestBehavior.AllowGet);
+                var res = Json(new { IsSuccess = IsCheck, Data = resds, Dhtml = html }, JsonRequestBehavior.AllowGet);
                 res.MaxJsonLength = int.MaxValue;
                 return res;//To DO
             }
@@ -68,21 +69,45 @@ namespace ANM.Controllers
             }
         }
 
-
-        public ActionResult About()
+        public ActionResult UserDetaillist()
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
+            RegisterViewModel model = new RegisterViewModel();
+            return View(model);
+        }
+        public ActionResult GetUserDetailData()
+        {
+            try
+            {
+                bool IsCheck = false;
+                var tbllist = CommonModel.GetSPCutUserlist();
+                if (tbllist != null)
+                {
+                    IsCheck = true;
+                }
+                var html = ConvertViewToString("_UserDetailData", tbllist);
+                var res = Json(new { IsSuccess = IsCheck, Data = html }, JsonRequestBehavior.AllowGet);
+                res.MaxJsonLength = int.MaxValue;
+                return res;
+            }
+            catch (Exception ex)
+            {
+                string er = ex.Message;
+                return Json(new { IsSuccess = false, Data = "" }, JsonRequestBehavior.AllowGet); throw;
+            }
         }
 
-        public ActionResult Contact()
+        private string ConvertViewToString(string viewName, object model)
         {
-            ViewBag.Message = "Your contact page.";
-
-
-            return View();
+            ViewData.Model = model;
+            using (StringWriter writer = new StringWriter())
+            {
+                ViewEngineResult vResult = ViewEngines.Engines.FindPartialView(ControllerContext, viewName);
+                ViewContext vContext = new ViewContext(this.ControllerContext, vResult.View, ViewData, new TempDataDictionary(), writer);
+                vResult.View.Render(vContext, writer);
+                return writer.ToString();
+            }
         }
+
         [AllowAnonymous]
         [HttpGet]
         public JsonResult APICall()
@@ -94,6 +119,7 @@ namespace ANM.Controllers
             {
                 string maxdate = APIService.GetMAXDate("1");
                 WebRequest req;
+                int ressum = 0;
                 if (string.IsNullOrWhiteSpace(maxdate))
                 {
                     req = WebRequest.Create(@"https://api.ona.io/api/v1/data/758721.json");
@@ -183,14 +209,33 @@ namespace ANM.Controllers
                             var res = db.SaveChanges();
                             if (res > 0)
                             {
-                                var user = new ApplicationUser { UserName = m.MobileNo, Email = m.MobileNo + "@gmail.com", PhoneNumber = m.MobileNo };
-                                var result = UserManager.CreateAsync(user, m.MobileNo).Result;
-                                if (result.Succeeded)
+                                if (!string.IsNullOrWhiteSpace(m.MobileNo))
                                 {
-                                    var result1 = UserManager.AddToRole(user.Id, "User");
-                                    str += res + "Success";
+                                    var user = new ApplicationUser { UserName = m.MobileNo, Email = m.MobileNo + "@gmail.com", PhoneNumber = m.MobileNo };
+                                    var result = UserManager.CreateAsync(user, m.MobileNo).Result;
+                                    if (result.Succeeded)
+                                    {
+                                        var result1 = UserManager.AddToRole(user.Id, "User");
+                                        str += res + "Success";
+                                    }
                                 }
+                                else
+                                {
+                                    ressum += res;
+                                    var tblu = db_.tbl_ImmunizationS1.Find(tbl.Id);
+                                    tblu.MobileNo = m.MobileNo + 999999999 + ressum;
+                                    db_.SaveChanges();
 
+                                    var mn = m.MobileNo + 999999999 + ressum;
+                                    var user = new ApplicationUser { UserName = mn, Email = mn + "@gmail.com", PhoneNumber = mn };
+                                    var result = UserManager.CreateAsync(user, mn).Result;
+                                    if (result.Succeeded)
+                                    {
+                                        var result1 = UserManager.AddToRole(user.Id, "User");
+                                        str += res + "Success";
+                                    }
+
+                                }
                             }
                         }
                     }

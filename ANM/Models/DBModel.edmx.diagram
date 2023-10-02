@@ -12,6 +12,7 @@
         <EntityTypeShape EntityType="ANM_DBModel.QuestionMast" Width="1.5" PointX="2.75" PointY="5.75" IsExpanded="true" />
         <AssociationConnector Association="ANM_DBModel.AspNetUserRoles" ManuallyRouted="false" />
         <EntityTypeShape EntityType="ANM_DBModel.tbl_ImmunizationS1" Width="1.5" PointX="5.375" PointY="3.75" />
+        <EntityTypeShape EntityType="ANM_DBModel.tbl_LoginDetail" Width="1.5" PointX="7.375" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

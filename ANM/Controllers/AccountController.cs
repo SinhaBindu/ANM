@@ -68,6 +68,7 @@ namespace ANM.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
+            ANMEntities dbe = new ANMEntities();
             if (!ModelState.IsValid)
             {
                 return View(model);
@@ -79,6 +80,17 @@ namespace ANM.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
+                    string id = User.Identity.GetUserId();
+                    if (!string.IsNullOrWhiteSpace(id))
+                    {
+                        tbl_LoginDetail tbl = new tbl_LoginDetail();
+                        tbl.ID = Guid.NewGuid();
+                        tbl.UserId = Guid.Parse(id);
+                        tbl.LoginDt = DateTime.Now;
+                        tbl.IsActive = true;
+                        dbe.tbl_LoginDetail.Add(tbl);
+                        dbe.SaveChanges();
+                    }
                     if (User.IsInRole("User"))
                     {
                         return RedirectToAction("Index", "Cert");

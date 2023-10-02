@@ -31,5 +31,6 @@ namespace ANM.Models
         public virtual DbSet<DistMast> DistMasts { get; set; }
         public virtual DbSet<QuestionMast> QuestionMasts { get; set; }
         public virtual DbSet<tbl_ImmunizationS1> tbl_ImmunizationS1 { get; set; }
+        public virtual DbSet<tbl_LoginDetail> tbl_LoginDetail { get; set; }
     }
 }

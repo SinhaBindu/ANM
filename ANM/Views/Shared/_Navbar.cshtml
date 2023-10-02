@@ -3,10 +3,10 @@
         <div class="navbar-content scroll-div ">
             <ul class="nav pcoded-inner-navbar ">
                 @*<li class="nav-item pcoded-menu-caption">
-                    <label>
+            <label>
 
-                    </label>
-                </li>*@
+            </label>
+        </li>*@
                 @if (User.Identity.IsAuthenticated)
                 {
                     if (User.IsInRole("User"))
@@ -19,6 +19,9 @@
                     {
                         <li class="nav-item">
                             <a href="~/Home/Index" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Dashboard</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="~/Home/UserDetaillist" class="nav-link "><span class="pcoded-micon"><i class="feather icon-box"></i></span><span class="pcoded-mtext">Download Certificate</span></a>
                         </li>
                     }
                 }
